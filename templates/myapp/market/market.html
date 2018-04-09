@@ -1,0 +1,102 @@
+{% extends 'myapp/base/base_main.html' %}
+{% load static %}
+{% block extraCSS %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'myapp/market/css/market.css' %}">
+{% endblock %}
+{% block extraJS %}
+    <script type="text/javascript" src="{% static 'myapp/market/js/market.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div id="market">
+        <aside>
+            <ul>
+                {% for foo in foodtypes %}
+                    <li>
+                        <a href="{% url 'myapp:marketwithparams' typeid=foo.typeid childcid="0" sortrule="0" %}">{{ foo.typename }}</a>
+                                    {% ifequal foo.typeid typeid  %}
+                        <div class="yellowSlide"></div>
+                                    {% endifequal %}
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+        </aside>
+
+        <section>
+            <nav>
+                <ul>
+                    <li id="type_toggle"><span>全部类型<span id="all_type_icon"
+                                                         class="glyphicon glyphicon-menu-down"></span></span></li>
+                    <li id="sort_toggle"><span>综合排序<span id="sort_icon"
+                                                         class="glyphicon glyphicon-menu-down"></span></span></li>
+                </ul>
+            </nav>
+
+            <menu>
+                <ul>
+                    {% for goods in goodlist %}
+                        <li>
+                            <a href="#">
+                                <img src="{{ goods.productimg }}" alt="{{ goods.productname }}">
+                                <div class="shoppingInfo">
+                                    <h6>{{ goods.productlongname }}</h6>
+                                    <p class="detailTag">
+                                        <span>精选</span>
+                                        <span></span>
+                                    </p>
+                                    <p class="unit">{{ goods.specifics }}</p>
+                                    <p class="price">
+                                        <span>{{ goods.price }}</span>
+                                        <s>{{ goods.marketprice }}</s>
+                                    </p>
+                                </div>
+                            </a>
+                           <section goodsid="{{ goods.id }}">
+                                <button class="subgoods">-</button>
+                                <span>0</span>
+                                <button goodsid="{{ goods.id }}" class="addgoods">+</button>
+                            </section>
+                        </li>
+                    {% endfor %}
+
+
+                </ul>
+                <div id="type_container">
+                    <div>
+                        {% for childtype in List %}
+                            <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childtype.1 sortrule='0' %}">
+                                <span>{{ childtype.0 }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="sort_container">
+                    <div>
+                        <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childcid sortrule="0" %}">
+                            <span>综合排序</span>
+                        </a>
+                        <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childcid sortrule='1' %}">
+                            <span>销量降序</span>
+                        </a>
+                        <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childcid sortrule='2' %}">
+                            <span>销量升序</span>
+                        </a>
+                        <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childcid sortrule='3' %}">
+                            <span>价格降序</span>
+                        </a>
+                        <a href="{% url 'myapp:marketwithparams' typeid=typeid childcid=childcid sortrule='4' %}">
+                            <span>价格升序</span>
+                        </a>
+
+                    </div>
+                </div>
+            </menu>
+        </section>
+
+
+    </div>
+{% endblock %}

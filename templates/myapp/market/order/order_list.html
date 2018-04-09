@@ -1,0 +1,21 @@
+{% extends 'myapp/market/order/order_detail.html' %}
+{% load static %}
+
+{% block header %}
+    <h3>订单列表</h3>
+{% endblock %}
+
+
+{% block content %}
+    <div id="order_list" class="container">
+
+
+        <ul>
+            {% for order in orderList %}
+                <a href="{% url 'myapp:orderDetail' %}?orderid={{ order.id }}"><li>订单号:{{ order.id }}</li></a>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+{% endblock %}

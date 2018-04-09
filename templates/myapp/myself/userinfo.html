@@ -1,0 +1,44 @@
+{% extends 'myapp/base/base_user.html' %}
+{% load static %}
+
+{% block extraJS %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'myapp/myself/js/userinfo.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <form method="post" onsubmit="return check()" enctype="multipart/form-data" action="{% url 'myapp:userinfo' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                    <img src="{{ icon_url }}">
+                    <input type="file" name="icon">
+            </div>
+
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="disabledTextInput">用户名</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledSelect">邮箱</label>
+                    <input type="text" class="form-control">
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label for="disabledTextInput">密码</label>
+                <input type="text" id="password" name="password" class="form-control" placeholder="Disabled input">
+            </div>
+            <div class="form-group">
+                <label for="disabledTextInput">确认密码</label>
+                <input type="text" id="password_confirm" class="form-control" placeholder="Disabled input">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">提交</button>
+        </form>
+
+
+    </div>
+
+{% endblock %}

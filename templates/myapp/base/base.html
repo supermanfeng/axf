@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp/base/css/reset.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/swiper.jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'myapp/base/js/base.js' %}"></script>
+     <link rel="icon" href="/static/img/title.jpg"/>
+    {% block extraCSS %}
+
+
+    {% endblock %}
+    {% block extraJS %}
+
+
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+
+
+{% endblock %}
+{% block content %}
+
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+</body>
+</html>

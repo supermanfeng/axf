@@ -1,0 +1,23 @@
+{% extends 'myapp/base/base_order.html' %}
+{% load static %}
+
+{% block header %}
+    <h3>待收货</h3>
+{% endblock %}
+
+{% block content %}
+
+    <div id="not_receive" class="container">
+
+        <ul>
+            {% for order in orderList %}
+                <a href="#">
+                    <li>{{ order.id }}</li>
+                </a>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+{% endblock %}
